@@ -1,12 +1,13 @@
 <?php
-session_start();
 
-ob_start();
+    session_start();
+    ob_start();
 
-if((!isset($_SESSION['id'])) && (!isset($_SESSION['nome']))){
-    $_SESSION['msg'] = "<p style='color: #ff0000'>Erro: Necessário fazer o login!</p>";
-    header("Location: index.php");        
-}
+    //Impede que o usuario retorne para página login.php sem antes deslogar
+    if((!isset($_SESSION['nome'])) && (!isset($_SESSION['email']))){
+        header("Location: home.php");
+        exit;
+    }
 
 ?>
 
@@ -27,7 +28,7 @@ if((!isset($_SESSION['id'])) && (!isset($_SESSION['nome']))){
 
 
 <body>
-
+                                <!-- LISTA DE ALUNOS -->
     <div class="container">
         
         
@@ -61,13 +62,13 @@ if((!isset($_SESSION['id'])) && (!isset($_SESSION['nome']))){
                         <td> <?= $usuario['contato']; ?> </td>
                         <td> <?= $usuario['endereco']; ?> </td>
                         <td>
-                            <a href="editar.php?nome=<?=$usuario['nome']; ?>" 
+                            <a href="editar.php?id=<?=$usuario['id']; ?>" 
                                 class="btn btn-success"
                             >
                                 editar
                             </a>
                             <a 
-                            href="excluir.php?nome=<?=$usuario['nome']; ?>"
+                            href="excluir.php?id=<?=$usuario['id']; ?>"
                             onclick="return confirm('Tem certeza que deseja excluir ?')"
                             class="btn btn-danger"
                             >

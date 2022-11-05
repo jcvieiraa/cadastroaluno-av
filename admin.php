@@ -5,7 +5,7 @@
 
     $lista = [];
 
-    $sql = $pdo->query("Select * from usuarios");
+    $sql = $pdo->query("SELECT * FROM usuarios");
 
     if($sql->rowCount() > 0) {
         $lista = $sql->fetchall(PDO::FETCH_ASSOC);

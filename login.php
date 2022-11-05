@@ -10,7 +10,7 @@ require 'config.php';
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 if(!empty($dados['SendLogin'])) {
-    $sql = $pdo->prepare("SELECT * FROM usuarios where email = :email");
+    $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
     $sql->bindParam(':email', $dados['email'], PDO::PARAM_STR);
     $sql->execute();
 
